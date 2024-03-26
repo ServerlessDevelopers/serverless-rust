@@ -71,7 +71,7 @@ The second piece of this handler to highlight is the [`into()`](focus://5[53:59]
 ### SampleModel
 <CH.Section>
 
-One of the interesting things about table design when implementing CDC is that your any of your records will trigger the Lambda.  The more varied your items, the more varied your handler will have to be.  This needs to be taken into account when modeling your tables by either overloading keys in a single table design vs using multiple tables to represent your entities.  There's no right or wrong, just what is right for your needs.
+One of the interesting things about table design when implementing CDC is that any of your records will trigger the Lambda.  The more varied your items, the more varied your handler will have to be.  This needs to be taken into account when modeling your tables by either overloading keys in a single table design vs using multiple tables to represent your entities.  There's no right or wrong, just what is right for your needs.
 
 For the purposes of this sample, the sample model is defined like this.
 
@@ -130,4 +130,4 @@ This sample shows a basic implementation of handling an array of DynamoDB Stream
 
 ## Congrats
 
-Congratulations, you know have a starting point to build your Rust Lambdas for processing DynamoDB Change Data Capture Records!
+Congratulations, you now have a starting point to build your Rust Lambdas for processing DynamoDB Change Data Capture Records!

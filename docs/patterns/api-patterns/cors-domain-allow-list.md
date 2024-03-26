@@ -131,4 +131,4 @@ CORS can be tricky sometimes.  It can also add overhead if you are doing checks 
 
 ## Congrats
 
-Congratulations, you know have a starting point to build a Lambda Function coded in Rust to handle a custom allow list with API Gateway and CORS,
+Congratulations, you now have a starting point to build a Lambda Function coded in Rust to handle a custom allow list with API Gateway and CORS,

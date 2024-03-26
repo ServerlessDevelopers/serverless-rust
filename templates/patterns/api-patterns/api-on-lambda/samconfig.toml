@@ -1,0 +1,9 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "rocket-on-lambda"
+resolve_s3 = true
+s3_prefix = "rocket-on-lambda"
+region = "eu-west-1"
+profile = "dev"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
