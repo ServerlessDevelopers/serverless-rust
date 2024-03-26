@@ -7,7 +7,7 @@ keywords: [rust,lambda,api gateway]
 
 Writing an API with Lambda is a topic that is pretty well covered on the internet.  However, there are so many choices of packages, project structure, Lambda size, runtimes, and many other decisions that can overwhelm even the most accomplished builder.  Add into the mix the addition of Rust, and things take on an even different slant than with something you are comfortable with.  
 
-If this feels like you, then let this article article walk you through some design choices that'll help you get started.  And when you get to the end, you will be able to package this up and add your custom code and deploy something into AWS.
+If this feels like you, then let this article walk you through some design choices that'll help you get started.  And when you get to the end, you will be able to package this up and add your custom code and deploy something into AWS.
 
 ## Let's make some design choices
 
