@@ -28,7 +28,7 @@ Using this pattern will save you CPU cycles, I/O requests and will give you a la
  Cargo.toml
 ```
 
-The template that this article will be working from can be found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/security-patterns/api-gateway-authorizer) directory in the GitHub repo. You can use template to get started building with API Gateway Authorizers and Lambda.
+The template that this article will be working from can be found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/security-patterns/api-gateway-authorizer) directory in the GitHub repo. You can use template to get started building with API Gateway Authorizers and Lambda.
 
 ## Lambda Code
 

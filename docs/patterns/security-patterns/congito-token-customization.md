@@ -34,7 +34,7 @@ In this example, we are going to use DynamoDB as a datastore to provide addition
  Cargo.toml
 ```
 
-A template that we will be working from that exercises the customization of Cognito tokens with Lambda is found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/security-patterns/cognito-token-customizer) directory in the GitHub repo. You can use template to get started building with Cognito and Lambda.
+A template that we will be working from that exercises the customization of Cognito tokens with Lambda is found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/security-patterns/cognito-token-customizer) directory in the GitHub repo. You can use template to get started building with Cognito and Lambda.
 
 ## Lambda Code
 

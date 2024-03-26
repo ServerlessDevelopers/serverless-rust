@@ -15,7 +15,7 @@ The SQS to Lambda integration is an example of a [poll based invoke](../../funda
 
 ## Project Structure
 
-A SQS to Lambda template is found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/messaging-patterns/sqs-message-processor) directory in the GitHub repo. You can use template to get started building with SQS and Lambda.
+A SQS to Lambda template is found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/messaging-patterns/sqs-message-processor) directory in the GitHub repo. You can use template to get started building with SQS and Lambda.
 
 The project separates the SQS handling code from your business logic. This allows you to share domain code between multiple Lambda functions that are contained within the same service.
 

@@ -23,7 +23,7 @@ With those clarifications out of the way, let's get started!
 
 Settling on a project structure is sometimes the hardest part of a new build.  For simplicity and order, I like to put my code in the root directory of the project under a folder named `lambdas`.  I find that when I do that, I can also then segement my infrastructure as code into a separate directory named `infra`.  When working on projects, it's easier to collapse my brain on half of the solution just like folding the directory in my editor. 
 
-A template for this pattern can be found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/api-patterns/lambda-per-verb/) directory in the GitHub repo. You can use the template to get started building with API Gateway and Lambda.
+A template for this pattern can be found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/api-patterns/lambda-per-verb/) directory in the GitHub repo. You can use the template to get started building with API Gateway and Lambda.
 
 ```bash
 infra

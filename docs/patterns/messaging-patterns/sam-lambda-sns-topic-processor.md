@@ -19,7 +19,7 @@ It's important to remember that SNS itself is ephemeral and provides no durabili
 
 ## Project Structure
 
-A SNS to Lambda template is found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/messaging-patterns/sns-message-processor) directory in the GitHub repo. You can use template to get started building with SNS and Lambda.
+A SNS to Lambda template is found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/messaging-patterns/sns-message-processor) directory in the GitHub repo. You can use template to get started building with SNS and Lambda.
 
 The project separates the SNS/Lambda handling code from your business logic. This allows you to share domain code between multiple Lambda functions that are contained within the same service.
 

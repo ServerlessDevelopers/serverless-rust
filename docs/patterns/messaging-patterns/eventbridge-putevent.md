@@ -19,7 +19,7 @@ The sample in this tutorial builds upon a Lambda that listens on a Function URL 
 
 ## Project Structure
 
-A Lambda and EventBridge PutEvent template is found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/messaging-patterns/eventbridge-putevent) directory in the GitHub repo. You can use template to get started building with EventBridge and Lambda.
+A Lambda and EventBridge PutEvent template is found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/messaging-patterns/eventbridge-putevent) directory in the GitHub repo. You can use template to get started building with EventBridge and Lambda.
 
 The template is simple, and is based upon the following structure.
 

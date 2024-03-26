@@ -17,7 +17,7 @@ This integration ensures you, as a developer, don't need to worry about the last
 
 ## Project Structure
 
-A Kinesis to Lambda template is found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/templates/patterns/messaging-patterns/kinesis-message-processor) directory in the GitHub repo. You can use template to get started building with SQS and Lambda.
+A Kinesis to Lambda template is found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/templates/patterns/messaging-patterns/kinesis-message-processor) directory in the GitHub repo. You can use template to get started building with SQS and Lambda.
 
 The project separates the Kinesis processing code from your business logic. This allows you to share domain code between multiple Lambda functions that are contained within the same service.
 

@@ -11,7 +11,7 @@ In this article we are going to look at using a Lambda Function to respond to an
 
 ## Sample Solution
 
-A template for this pattern can be found under the [./templates](https://github.com/jeastham1993/serverless-rust.github.io/tree/main/templates/patterns/api-patterns/cors-allow-list/) directory in the GitHub repo. You can use the template to get started building an API Gateway CORS allow list with a Lambda Function.
+A template for this pattern can be found under the [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/api-patterns/cors-allow-list/) directory in the GitHub repo. You can use the template to get started building an API Gateway CORS allow list with a Lambda Function.
 
 ![API Gateway CORS](/img/patterns/api-patterns/CORS.png)
 
