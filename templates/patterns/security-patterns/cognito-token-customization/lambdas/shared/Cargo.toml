@@ -1,0 +1,15 @@
+[package]
+name = "shared"
+
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+
+serde_dynamo = { version = "4", features = ["aws-sdk-dynamodb+1"] }
+aws-sdk-dynamodb = "1.2.0"
+serde = { version = "1.0.197", features = ["derive"] }
+thiserror = "1.0.58"
+tracing = "0.1.40"

@@ -1,0 +1,26 @@
+[package]
+name = "handler"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+shared = { path = "../shared" }
+
+aws_lambda_events = { version = "0.15.0", features = ["cognito"] }
+lambda_runtime = "0.10.0"
+aws-config = { features = ["behavior-version-latest"], version = "1.0.1" }
+aws-sdk-dynamodb = "1.2.0"
+tokio = { version = "1", features = ["macros"] }
+thiserror = "1.0.56"
+tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3", features = [
+    "json",
+    "env-filter",
+    "registry",
+] }
+openssl = { version = "0.10.35", features = ["vendored"] }

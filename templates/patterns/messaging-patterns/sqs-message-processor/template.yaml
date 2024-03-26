@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  MessageProcessorFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Metadata:
+      BuildMethod: rust-cargolambda # More info about Cargo Lambda: https://github.com/cargo-lambda/cargo-lambda
+    Properties:
+      FunctionName: serverless-rust-NewMessageProcessor
+      CodeUri: .   # Points to dir of Cargo.toml
+      Handler: bootstrap    # Do not change, as this is the default executable name produced by Cargo Lambda
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      Events:
+        NewMessageQueueEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt NewMessageQueue.Arn
+            BatchSize: 10
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+
+  NewMessageQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: serverless-rust-NewMessageQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt NewMessageDLQ.Arn
+        maxReceiveCount: 3
+
+  NewMessageDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: serverless-rust-NewMessageDLQ
+
+Outputs:
+  NewMessageQueueUrl:
+    Description: The URL of the new message queue
+    Value: !Ref NewMessageQueue

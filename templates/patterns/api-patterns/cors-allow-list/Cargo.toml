@@ -1,0 +1,27 @@
+[package]
+name = "cors-allow-list"
+version = "1.0.0"
+authors = ["Benjamen Pyle", "James Eastham"]
+license = "GPL-3"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lambda_runtime = "0.10.0"
+serde = "1.0.195"
+tokio = { version = "1", features = ["macros"] }
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", default-features = false, features = [
+    "fmt",
+    "json",
+] }
+
+aws_lambda_events = { version = "0.15.0", default-features = false, features = [
+    "lambda_function_urls",
+] }
+
+aws-config = { version = "1.1.1", features = ["behavior-version-latest"] }
+aws-sdk-eventbridge = "1.9.0"
+
+serde_json = "1.0.111"
+lambda_http = "0.10.0"

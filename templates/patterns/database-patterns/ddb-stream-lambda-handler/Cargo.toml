@@ -1,0 +1,22 @@
+[package]
+name = "ddb-streams-example"
+version = "1.0.0"
+authors = ["Benjamen Pyle", "James Eastham"]
+license = "GPL-3"
+edition = "2021"
+
+[dependencies]
+aws_lambda_events = { version = "0.14.0", default-features = false, features = [
+    "dynamodb",
+] }
+
+lambda_runtime = "0.9.2"
+tokio = { version = "1", features = ["macros"] }
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", default-features = false, features = [
+    "env-filter",
+    "fmt",
+    "json",
+] }
+serde = { version = "1.0.196", features = ["derive"] }
+serde_dynamo = "4.2.13"

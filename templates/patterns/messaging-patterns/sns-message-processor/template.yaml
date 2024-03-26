@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  SnsTopicProcessorFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Metadata:
+      BuildMethod: rust-cargolambda # More info about Cargo Lambda: https://github.com/cargo-lambda/cargo-lambda
+    Properties:
+      FunctionName: serverless-rust-SnsTopicProcessor
+      CodeUri: .   # Points to dir of Cargo.toml
+      Handler: bootstrap    # Do not change, as this is the default executable name produced by Cargo Lambda
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      EventInvokeConfig:
+        MaximumRetryAttempts: 2
+        MaximumEventAgeInSeconds: 300
+        DestinationConfig:
+          OnFailure:
+            Type: SQS
+            Destination: !GetAtt OrderCreatedFailureDLQ.Arn
+      Events:
+        SNSEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref OrderCreatedTopic
+
+  OrderCreatedTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: serverless-rust-OrderCreatedTopic
+
+  OrderCreatedFailureDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: serverless-rust-OrderCreatedTopicDLQ
+
+Outputs:
+  SnsTopicArn:
+    Description: The ARN of the topic
+    Value: !Ref OrderCreatedTopic

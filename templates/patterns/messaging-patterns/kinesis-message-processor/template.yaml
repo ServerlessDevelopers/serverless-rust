@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  KinesisProcessorFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+    Properties:
+      FunctionName: serverless-rust-KinesisMessageProcessor
+      CodeUri: .
+      Handler: bootstrap
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      EventInvokeConfig:
+        MaximumRetryAttempts: 2
+        MaximumEventAgeInSeconds: 300
+        DestinationConfig:
+          OnFailure:
+            Type: SQS
+            Destination: !GetAtt FailedSensorReadingDLQ.Arn
+      Events:
+        Stream:
+          Type: Kinesis
+          Properties:
+            Stream: !GetAtt MessageStream.Arn
+            BatchSize: 100
+            StartingPosition: LATEST
+
+  MessageStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      ShardCount: 1
+
+  FailedSensorReadingDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: serverless-rust-KinesisSensorDLQ
+
+Outputs:
+  StreamARN:
+    Description: "Stream ARN"
+    Value: !GetAtt MessageStream.Arn

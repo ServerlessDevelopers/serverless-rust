@@ -1,0 +1,8 @@
+{
+  "label": "Messaging",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Messaging patterns for Rust and Serverless"
+  }
+}

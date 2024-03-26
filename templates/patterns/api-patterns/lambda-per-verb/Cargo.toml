@@ -1,0 +1,15 @@
+[workspace]
+members = [
+    "lambdas/delete-by-id",
+    "lambdas/get-by-id",
+    "lambdas/post",
+    "lambdas/put-by-id",
+    "lambdas/shared",
+]
+resolver = "2"
+
+[workspace.package]
+version = "1.0.0"
+authors = ["Benjamen Pyle", "James Eastham"]
+license = "GPL-3"
+edition = "2021"
