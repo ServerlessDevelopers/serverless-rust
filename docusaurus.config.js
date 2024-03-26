@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const {themes} = require('prism-react-renderer');
+const { themes } = require('prism-react-renderer');
 const lightTheme = themes.github;
 const darkTheme = themes.dracula;
 
@@ -13,16 +13,16 @@ var path = require('path');
 const config = {
   title: 'Serverless Rust',
   tagline: 'Your One Stop Shop For All Things Serverless Rust',
-  url: 'https://serverlessrust.dev',
-  baseUrl: '/serverless-rust.github.io/',
+  url: 'https://serverless-rust.com',
+  baseUrl: '',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'jeastham1993', // Usually your GitHub org/user name.
-  projectName: 'serverless-rust.github.io', // Usually your repo name.
+  organizationName: 'serverlessdevelopers', // Usually your GitHub org/user name.
+  projectName: 'serverless-rust', // Usually your repo name.
   trailingSlash: false,
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -43,7 +43,7 @@ const config = {
           resolve: {
             alias: {
               // assuming root node_modules is up from "./packages/<your-docusaurus>
-              react: path.resolve('node_modules/react'), 
+              react: path.resolve('node_modules/react'),
             },
           },
         };
@@ -101,7 +101,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/jeastham1993/serverless-rust.github.io',
+            href: 'https://serverless-rust.com',
             label: 'GitHub',
             position: 'right',
           },
@@ -132,7 +132,7 @@ const config = {
               },
               {
                 label: 'Report Issues on GitHub',
-                to: 'https://github.com/jeastham1993/serverless-rust.github.io',
+                to: 'https://github.com/ServerlessDevelopers/serverless-rust/issues',
               },
             ],
           },
