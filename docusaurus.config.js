@@ -132,7 +132,7 @@ const config = {
               },
               {
                 label: 'Report Issues on GitHub',
-                to: 'https://github.com/ServerlessDevelopers/serverless-rust/issues',
+                to: 'https://github.com/serverlessdevelopers/serverless-rust/issues',
               },
             ],
           },
