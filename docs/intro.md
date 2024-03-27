@@ -43,7 +43,7 @@ By laying out some of these patterns and techniniques, our hope is that it will 
 
 I'd recommend starting with the [Your First Lambda](./getting-started/your-first-lambda) tutorial first. From there, feel free to have a look around. 
 
-A quick call-out, this website isn't hear to teach you the deep internals of the Rust language. Nor is it going to teach you about serverless architectures. There are plenty of fantastic resources on the internet covering those topics.
+A quick call-out, this website isn't here to teach you the deep internals of the Rust language. Nor is it going to teach you about serverless architectures. There are plenty of fantastic resources on the internet covering those topics.
 
 What we aim to give you, is a resource you can come back to over and over again as you start to build out your serverless Rust systems.
 
