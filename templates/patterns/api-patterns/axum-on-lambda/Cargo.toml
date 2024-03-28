@@ -1,0 +1,18 @@
+[package]
+name = "api-on-lambda"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = { version = "0" }
+tokio = {version="1", features = ["rt-multi-thread"]}
+tracing = "0"
+tracing-subscriber = "0"
+uuid = { version = "1", features = ["v4","fast-rng","macro-diagnostics"]}
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.115"
+serde_urlencoded = "0.7.1"
+env_logger = "0.11.3"
+log = "0.4.21"

@@ -78,7 +78,7 @@ const config = {
           filename: 'sitemap.xml',
         },
         gtag: {
-          trackingID: 'G-ELBLZN8LN3',
+          trackingID: 'G-JWKWKGFW71',
           anonymizeIP: true,
         },
       }),
@@ -101,7 +101,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://serverless-rust.com',
+            href: 'https://github.com/serverlessdevelopers/serverless-rust/issues',
             label: 'GitHub',
             position: 'right',
           },
