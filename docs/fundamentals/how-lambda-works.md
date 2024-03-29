@@ -23,17 +23,17 @@ The time all of that takes is what is known as a _`cold start`_. You'll see that
 
 ### 2. The request is passed to Lambda
 
-Now that there is an execution environment available your function handler can execute. Lambda passes the payload to your function and your code runs. In Rust, the runtime itself can (de)serialize this event payload into a C# object. More on that in the next section!
+Now that there is an execution environment available your function handler can execute. Lambda passes the payload to your function and your code runs. In Rust, the runtime itself can (de)serialize this event payload into a Rust struct. More on that in the next section!
 
 ### 3. Post Execution
 
-After your function handler has completed the Lambda execution environment is frozen. To improve performance the execution environment is retained for a period of time. If another request is received at this point the same execution environment will be re-used. This is what is known as a _`warm start`_.
+After your function handler has completed the Lambda execution, the environment is frozen. To improve performance the execution environment is retained for a period of time. If another request is received at this point the same execution environment will be re-used. This is what is known as a _`warm start`_.
 
 ## Handling Multiple Requests
 
 We've walked through a simple example there in which Lambda receives a single request. But what happens if Lambda receives 2, 10, 1000 requests simultaneously. An important thing to remember is that each execution environment will only ever process **one request at any one time**.
 
-What this means is that if you received 10 requests simultaneously, you are likely to get 10 cold starts and 10 seperate execution environments (providing there aren't any existing ones). As a default, you can have 1000 concurrent Lambda executions, but that is a soft limit and can be raised. Check out the [quotas on the AWS Docs](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html).
+What this means is that if you received 10 requests simultaneously, you are likely to get 10 cold starts and 10 separate execution environments (providing there aren't any existing ones). As a default, you can have 1000 concurrent Lambda executions, but that is a soft limit and can be raised. Check out the [quotas on the AWS Docs](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html).
 
 ## Cold Starts
 
