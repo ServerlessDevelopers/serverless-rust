@@ -1,0 +1,8 @@
+{
+  "label": "Containers",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Patterns around working with Containers"
+  }
+}
