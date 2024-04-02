@@ -36,6 +36,7 @@ const config = {
   themes: ['mdx-v2'],
 
   plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
     () => ({
       name: 'resolve-react',
       configureWebpack() {
@@ -88,6 +89,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+          background: {
+            light: 'rgb(255, 255, 255)',
+            dark: 'rgb(50, 50, 50)'
+          }
+        }
+      },
       metadata: [{
         name: 'keywords', content: 'rust, serverless, aws, aws lambda, rustlang'
       }],
