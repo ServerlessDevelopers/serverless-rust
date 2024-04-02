@@ -4,7 +4,7 @@ description: Managing a binary or library dependencies with the Cargo.toml file
 keywords: [fundamentals]
 ---
 
-The Cargo.toml file is a part of each Rust package and is called a manifest.  In this file there are several aspects that describe the type of package (bin or lib), the dependencies that this package will use and some meta information like authors, license and edition.
+The Cargo.toml file is a part of each Rust package and is called a manifest.  In this file there are several aspects that describe the type of package (bin or lib), the dependencies that this package will use and some meta information like authors, license and edition.  In Rust-speak, a "bin" is a project that compiles down to a binary exectuable. And in contrast, a "lib" is a library project that compiles to something that can be shared and linked into another project.
 
 For a full reference of the [Cargo file](https://doc.rust-lang.org/cargo/reference/index.html), the Cargo documentation is a much more in-depth review of the components and how to make the most of it.
 
