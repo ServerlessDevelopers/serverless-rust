@@ -33,9 +33,9 @@ As well as giving you cost, performance and sustainability benefits. Rust is als
 
 This isn't a suggestion that you should go right now and re-write every part of your system in Rust.  It's not even that you should abandon your current development toolchain for Rust as there is more to consider in a wider organisational context than just the programming language itself. Developer skills, re-training, the simple fingers on keyboard time needed to re-write something that exists.
 
-However, if you are looking for a language that is fast, effecient, safe, and a joy to program with, then you should strongly consider Rust.  And as you start to think about building new things, Rust should be at the top of your mind. Whether you are running your application on a server, a container or using serverless technologies. 
+However, if you are looking for a language that is fast, efficient, safe, and a joy to program with, then you should strongly consider Rust.  And as you start to think about building new things, Rust should be at the top of your mind. Whether you are running your application on a server, a container or using serverless technologies. 
 
-And when you couple Rust's performance and low resource consumption with serverless services that are cost you money *per millisecond* that your code is running. Rust is tailormade for Servelress.
+And when you couple Rust's performance and low resource consumption with serverless services that are cost you money *per millisecond* that your code is running. Rust is tailormade for serverless.
 
 If you've gotten this far and not immediately running to start re-implementing your system in Rust then thank you for sticking around. What we wanted to put together with this website is a resource, a tool and a set of templates that allow you to quickly get started with bringing Rust into your serverless systems.  Some of the patterns and template are cut in a way that you can drop your own business logic and just get started.  It also contains resources and tips that we wish we had when we first started with Rust and serverless.
 
