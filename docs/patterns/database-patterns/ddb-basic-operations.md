@@ -310,3 +310,23 @@ pub async fn get_items(
 </CH.Section>
 
 ## Running the Sample
+
+All of the above operations are available in the sample code found [./templates](https://github.com/serverlessdevelopers/serverless-rust/tree/main/templates/patterns/database-patterns/ddb-basic-operations/).  You will find [client building](#creating-a-client) in addition to models, errors and a main function that will execute all of the examples.
+
+In order to execute the code, make sure that you have three things configured:
+
+1.  An AWS Account with a DynamoDB created with just a partition key defined as `id`.
+2.  Access locally to read/write/delete items from that DynamoDB table.
+3.  An environment variable called `TABLE_NAME` set to the table name created in item 1.
+
+When running the same, you'll see the following occur.
+
+-   A loop is run 100 times
+-   An item is created
+-   Then it is fetched
+-   Every 10 items the UpdateItem operation is executed on the `updated_at` field
+-   At the very end, the table is scanned and items are printed back out to the console
+
+## Congratulations
+
+Congratulations, you've seen how to establish a new Client with DDB and Rust in addition to the basic data plane operations.  More to come on Pagination, Transactions and BatchItem Operations.
