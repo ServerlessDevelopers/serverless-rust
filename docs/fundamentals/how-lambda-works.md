@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: How Lambda Works
 description: A walkthrough of the key concepts around AWS Lambda and how it executes
 keywords: [fundamentals]

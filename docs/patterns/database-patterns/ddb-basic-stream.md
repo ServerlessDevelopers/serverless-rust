@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: DynamoDB Streams
 description: Handle table changes with a Lambda
 keywords: [rust,lambda,dynamodb,change data capture]
