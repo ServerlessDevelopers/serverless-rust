@@ -17,11 +17,10 @@ In this article we are going to cover the following operations:
 
 -   [Creating a DynamoDB SDK client](#creating-a-client)
 -   [GetItem](#getitem-request)
--   Query
--   Scan
--   PutItem
--   UpdateItem
--   DeleteItem
+-   [PutItem](#putitem-request)
+-   [UpdateItem](#updateitem-request)
+-   [DeleteItem](#deleteitem-request)
+-   [Scan](#scan-request)
 
 Topics not covered but will be in future articles include BatchItem operations, Transactions and Paginiation.
 
