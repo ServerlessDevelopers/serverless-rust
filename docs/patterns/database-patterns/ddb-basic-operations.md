@@ -7,7 +7,7 @@ keywords: [rust,lambda,dynamodb,aws,aws sdk,sdk]
 
 ## Introduction
 
-The [AWS SDK for Rust](../../fundamentals/aws-sdk-rust) has been developed to simplify operations with various AWS services including DynamoDB.  By leveraging the SDK, builders can take advantage of the data plane operations exposed over the API like GetItem, PutItem, Scan and the other core DynamoDB operations.
+The [AWS SDK for Rust](../../fundamentals/aws-sdk-rust) has been developed to simplify operations with various AWS services including [DynamoDB](https://docs.rs/aws-sdk-dynamodb/latest/aws_sdk_dynamodb/).  By leveraging the SDK, you can take advantage of the data plane operations exposed over the API like GetItem, PutItem, Scan and the other core DynamoDB operations.
 
 This article looks to explore the foundational operations that you will encounter when working with AWS, DynamoDB and Rust.  They will be applicable whether you are building and shipping with [Lambda](../../fundamentals/how-lambda-works.md) or with Containers.
 
@@ -85,7 +85,7 @@ There are two samples included below that showcase how to execute [`get_item`](f
 
 The key things to note are that you can specify key as a single partition key or you can use a HashMap to use a compound partition key and range key if the table requires.
 
-What is really nice about working with item that are returned from DynamoDB, the very familiar serde concept that is used throughout Rust for working with JSON can be used for this data as well which is also JSON.
+What is really nice about working with item that are returned from DynamoDB, the very familiar serde crate that is used throughout Rust for working with JSON can be used for this data as well which is also JSON.
 
 <CH.Code>
 
