@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: SNS Message Processor
 description: Lambda function for processing messages from an SNS topic
 keywords: [rust,lambda,sns,messaging,publish subscribe channels]
