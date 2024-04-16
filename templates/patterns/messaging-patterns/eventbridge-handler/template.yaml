@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  EventHandlerFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: event-bridge-handler
+    Properties:
+      FunctionName: serverless-rust-EventHandler
+      CodeUri: .
+      Handler: bootstrap
+      Runtime: provided.al2023
+      EventInvokeConfig:
+        MaximumRetryAttempts: 1
+        DestinationConfig:
+          OnFailure:
+            Type: SQS
+      Architectures:
+        - arm64
+      Events:
+        Trigger:
+          Type: CloudWatchEvent
+          Properties:
+            EventBusName: !GetAtt RustDemoEventBus.Name
+            Pattern:
+              source:
+                - RustDemo
+
+  EventPublisherFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: event-bridge-publisher
+    Properties:
+      FunctionName: serverless-rust-EventPublisher
+      CodeUri: .
+      Handler: bootstrap
+      Runtime: provided.al2023
+      EventInvokeConfig:
+        MaximumRetryAttempts: 1
+        DestinationConfig:
+          OnFailure:
+            Type: SQS
+      Environment:
+        Variables:
+          EVENT_BUS_NAME: !GetAtt RustDemoEventBus.Name
+      Architectures:
+        - arm64
+      FunctionUrlConfig:
+        AuthType: "NONE"
+        InvokeMode: "BUFFERED"
+      Policies:
+        - EventBridgePutEventsPolicy: # Policy template with placeholder value
+            EventBusName: !GetAtt RustDemoEventBus.Name
+
+  RustDemoEventBus:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: "RustDemoEventBus"
