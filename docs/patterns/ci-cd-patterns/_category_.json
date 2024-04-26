@@ -1,0 +1,8 @@
+{
+    "label": "CI/CD",
+    "position": 1,
+    "link": {
+        "type": "generated-index",
+        "description": "Serverless CI/CD Patterns"
+    }
+}
