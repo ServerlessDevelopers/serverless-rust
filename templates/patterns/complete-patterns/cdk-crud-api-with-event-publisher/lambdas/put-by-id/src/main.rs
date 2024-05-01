@@ -1,7 +1,7 @@
 use lambda_http::{Error, IntoResponse, Request, RequestPayloadExt, Response, run, service_fn};
 use lambda_http::http::StatusCode;
 
-use shared::{ApplicationError, CreateOrderCommand, OrderRepository, UpdateOrderCommand, UpdateOrderCommandHandler};
+use shared::{ApplicationError, OrderRepository, UpdateOrderCommand, UpdateOrderCommandHandler};
 
 #[tokio::main]
 async fn main() -> Result<(), Error>{
