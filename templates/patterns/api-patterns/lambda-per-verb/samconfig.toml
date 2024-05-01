@@ -1,8 +1,8 @@
 version = 0.1
 [default.deploy.parameters]
-stack_name = "actix-on-lambda"
+stack_name = "lambda-per-verb"
 resolve_s3 = true
-s3_prefix = "actix-on-lambda"
+s3_prefix = "lambda-per-verb"
 region = "eu-west-1"
 profile = "sandbox"
 capabilities = "CAPABILITY_IAM"
