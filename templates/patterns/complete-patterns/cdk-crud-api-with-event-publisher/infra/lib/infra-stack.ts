@@ -1,10 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
-import { RustFunction } from "cargo-lambda-cdk";
-import { Architecture } from "aws-cdk-lib/aws-lambda";
 import { AttributeType, BillingMode, StreamViewType, Table } from "aws-cdk-lib/aws-dynamodb";
 import {
-  LambdaIntegration,
   Resource,
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
@@ -13,6 +10,8 @@ import { DeleteByIdEndpoint } from "./constructs/delete-by-id-endpoint";
 import { UpdateByIdEndpoint } from "./constructs/update-by-id-endpoint";
 import { PostEndpoint } from "./constructs/post-endpoint";
 import { EventPublisherFunction } from "./constructs/event-publisher-function";
+import { Topic } from "aws-cdk-lib/aws-sns";
+import { StringParameter } from "aws-cdk-lib/aws-ssm";
 
 export class InfraStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -64,8 +63,28 @@ export class InfraStack extends cdk.Stack {
       apiResource: orderIdResource
     });
 
+    const orderCreatedTopic = new Topic(this, "OrderCreatedTopic");
+    const orderUpdatedTopic = new Topic(this, "OrderUpdatedTopic");
+    const orderDeletedTopic = new Topic(this, "OrderDeletedTopic");
+
     const eventPublisherFunction = new EventPublisherFunction(this, "EventPublisherFunction", {
-      table: table
+      table: table,
+      orderCreatedTopic,
+      orderUpdatedTopic,
+      orderDeletedTopic
+    });
+
+    const orderCreatedTopicArnParameter = new StringParameter(this, "OrderCreatedTopicArn", {
+      stringValue: orderCreatedTopic.topicArn,
+      parameterName: "/order-api/order-created"
+    });
+    const orderUpdatedTopicArnParameter = new StringParameter(this, "OrderUpdatedTopicArn", {
+      stringValue: orderUpdatedTopic.topicArn,
+      parameterName: "/order-api/order-updated"
+    });
+    const orderDeletedTopicArnParameter = new StringParameter(this, "OrderDeletedTopicArn", {
+      stringValue: orderDeletedTopic.topicArn,
+      parameterName: "/order-api/order-deleted"
     });
 
     const apiEndpoint = new cdk.CfnOutput(this, "ApiUrlOutput", {

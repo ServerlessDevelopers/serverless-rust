@@ -3,49 +3,125 @@ use tracing_subscriber::filter::{EnvFilter, LevelFilter};
 use aws_lambda_events::event::dynamodb::Event;
 use aws_sdk_sns::Client;
 use aws_sdk_sns::config::Region;
+use cloudevents::v02::{CloudEvent, CloudEventBuilder, Data};
 use lambda_runtime::{run, service_fn, Error, LambdaEvent};
+use serde::Serialize;
 use serde_dynamo::{AttributeValue, Item};
 use tracing::info;
 use shared::DatabaseKeys;
-
-enum DynamoDbEventname {
-    INSERT,
-    MODIFY,
-    REMOVE
-}
+use uuid::Uuid;
 
 async fn function_handler(sns_client: &Client, event: LambdaEvent<Event>) -> Result<(), Error> {
     info!("(BatchSize)={:?}", event.payload.records.len());
-    for record in event.payload.records {
-        let stream_data = match record.event_name.as_str() {
-            "INSERT" => {
-                let stream_data: StreamData = record.change.new_image.into();
-                tracing::info!("Inserted: {}", stream_data.order_id);
 
-                stream_data
+    for record in event.payload.records {
+        let (stream_data, evt, topic_arn): (StreamData, CloudEvent, String) = match record.event_name.as_str() {
+            "INSERT" => {
+                OrderCreatedEvent::parse(record.change.new_image)
             },
             "MODIFY" => {
-                let stream_data: StreamData = record.change.new_image.into();
-                tracing::info!("Modified: {}", stream_data.order_id);
-
-                stream_data
+                OrderUpdatedEvent::parse(record.change.new_image)
             },
             "REMOVE" => {
-                let stream_data: StreamData = record.change.old_image.into();
-                tracing::info!("Deleted: {}", stream_data.order_id);
-
-                stream_data
+                OrderDeletedEvent::parse(record.change.old_image)
             },
             _ => {
-                tracing::info!("Unknown stream type");
+                info!("Unknown stream type");
                 continue;
             }
         };
 
+        if stream_data.data_type != "Order" {
+            continue;
+        }
 
+        let evt_data = serde_json::to_string(&evt).unwrap();
+
+        info!("{}", &evt_data);
+
+        let _ = sns_client.publish()
+            .topic_arn(topic_arn)
+            .message(evt_data)
+            .send()
+            .await?;
     }
 
     Ok(())
+}
+
+#[derive(Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct OrderCreatedEvent {
+    order_id: String,
+    customer_id: String
+}
+
+impl OrderCreatedEvent {
+    fn parse(record: Item) -> (StreamData, CloudEvent, String) {
+        let stream_data: StreamData = record.into();
+        let event = CloudEventBuilder::default()
+            .event_id(Uuid::new_v4().to_string())
+            .event_type("order.created.v1")
+            .source("https://orders.api")
+            .contenttype("application/json")
+            .data(Data::from_serializable(OrderCreatedEvent {
+                customer_id: stream_data.customer_id.clone(),
+                order_id: stream_data.order_id.clone(),
+            }).unwrap())
+            .build();
+
+        (stream_data, event.unwrap(), std::env::var("ORDER_CREATED_TOPIC").unwrap())
+    }
+}
+
+#[derive(Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct OrderUpdatedEvent {
+    order_id: String,
+    customer_id: String
+}
+
+impl OrderUpdatedEvent {
+    fn parse(record: Item) -> (StreamData, CloudEvent, String) {
+        let stream_data: StreamData = record.into();
+        let event = CloudEventBuilder::default()
+            .event_id(Uuid::new_v4().to_string())
+            .event_type("order.updated.v1")
+            .source("https://orders.api")
+            .contenttype("application/json")
+            .data(Data::from_serializable(OrderUpdatedEvent {
+                customer_id: stream_data.customer_id.clone(),
+                order_id: stream_data.order_id.clone(),
+            }).unwrap())
+            .build();
+
+        (stream_data, event.unwrap(), std::env::var("ORDER_UPDATED_TOPIC").unwrap())
+    }
+}
+
+#[derive(Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct OrderDeletedEvent {
+    order_id: String,
+    customer_id: String
+}
+
+impl OrderDeletedEvent {
+    fn parse(record: Item) -> (StreamData, CloudEvent, String) {
+        let stream_data: StreamData = record.into();
+        let event = CloudEventBuilder::default()
+            .event_id(Uuid::new_v4().to_string())
+            .event_type("order.deleted.v1")
+            .source("https://orders.api")
+            .contenttype("application/json")
+            .data(Data::from_serializable(OrderDeletedEvent {
+                customer_id: stream_data.customer_id.clone(),
+                order_id: stream_data.order_id.clone(),
+            }).unwrap())
+            .build();
+
+        (stream_data, event.unwrap(), std::env::var("ORDER_DELETED_TOPIC").unwrap())
+    }
 }
 
 struct StreamData {

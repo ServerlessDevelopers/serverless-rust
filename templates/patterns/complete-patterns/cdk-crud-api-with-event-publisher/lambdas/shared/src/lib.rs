@@ -20,6 +20,7 @@ use aws_sdk_dynamodb::types::AttributeValue;
 use uuid::Uuid;
 use thiserror::Error;
 
+#[derive(Debug)]
 pub enum DatabaseKeys {
     PK,
     SK,
