@@ -5,6 +5,8 @@ description: Lambda function for handling an event from Amazon EventBridge
 keywords: [rust,lambda,eventbridge,messaging,putevent]
 ---
 
+import ReactPlayer from 'react-player'
+
 As mentioned in several of the other messaging quick starts, the publisher/subscriber (pub/sub) pattern is extremely common in a serverless architecture. Severless encourages micro and someties even nano-sized components that are assembled together by way of contracts as opposed to building everything into a single binary.
 
 AWS' EventBridge is a service that describes itself like this:
@@ -12,6 +14,12 @@ AWS' EventBridge is a service that describes itself like this:
 > Amazon EventBridge Event Bus is a serverless event bus that helps you receive, filter, transform, route, and deliver events. - AWS
 
 It provides a Default Bus or you are able to add Custom Event Buses to fit your need.  This article will look to showcase how to create a Lambda function that handles an event from an EventBridge custom bus. It also takes the publishing component from the article on [Event Bridge Put Events](./eventbridge-putevent.md) to give a cohesive pub/sub experience.
+
+## Video Walkthrough
+
+If video is more your thing, then check out this walkthrough on YouTube. Otherwise, keep reading for the written documentation.
+
+<ReactPlayer controls url='https://youtu.be/DUm2rHbiFTs' />
 
 ## How It Works
 
