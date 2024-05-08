@@ -223,7 +223,16 @@ sam build
 sam deploy
 ```
 
-You can then invoke the function using the below CLI command, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step. The `sam logs` command will grab the latest logs.
+This pattern also ships with a small test utility that allows you to interact with Kinesis. Run the below commands to use the test utility, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step:
+
+```bash test-utility.sh
+cd test-utility
+cargo run -- <STREAM_ARN>
+```
+
+The test utility simulates a set of IoT devices sending temperature readings to Kinesis. It will send 10 records every 1 second. You can then use the `sam logs` command to retrieve the latest log messages.
+
+Alternatively, you can then invoke the function using the below CLI command, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step. The `sam logs` command will grab the latest logs.
 
 ```bash test.sh
 aws kinesis put-record --data "eyJ0ZW1wZXJhdHVyZSI6IDg5LjksICJyZWFkaW5nVGltZXN0YW1wIjogODkyMzc0MiB9" --partition-key "sensor-1" --region eu-west-1 --profile dev --stream-arn <STREAM_ARN>
