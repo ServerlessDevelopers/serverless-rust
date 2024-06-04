@@ -616,7 +616,7 @@ dependencies = [
 name = "delete-by-id"
 version = "1.0.0"
 dependencies = [
- "lambda_http 0.11.1",
+ "lambda_http",
  "serde_json",
  "shared",
  "tokio",
@@ -675,7 +675,7 @@ dependencies = [
  "aws-sdk-sns",
  "aws_lambda_events 0.14.0",
  "cloudevents",
- "lambda_runtime 0.11.1",
+ "lambda_runtime",
  "serde",
  "serde_dynamo",
  "serde_json",
@@ -832,7 +832,7 @@ dependencies = [
 name = "get-by-id"
 version = "1.0.0"
 dependencies = [
- "lambda_http 0.10.0",
+ "lambda_http",
  "serde_json",
  "shared",
  "tokio",
@@ -1132,33 +1132,6 @@ dependencies = [
 
 [[package]]
 name = "lambda_http"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef8fafd7a4ce0bc6093cf1bed3dcdfc1239c27df1e79e3f2154f4d3299d4f60e"
-dependencies = [
- "aws_lambda_events 0.15.0",
- "base64 0.21.7",
- "bytes",
- "encoding_rs",
- "futures",
- "futures-util",
- "http 1.1.0",
- "http-body 1.0.0",
- "http-body-util",
- "hyper 1.2.0",
- "lambda_runtime 0.10.0",
- "mime",
- "percent-encoding 2.3.1",
- "pin-project-lite",
- "serde",
- "serde_json",
- "serde_urlencoded",
- "tokio-stream",
- "url 2.5.0",
-]
-
-[[package]]
-name = "lambda_http"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5ebde9aedfdf8c2bac4365d9adafae6ca6d631b0ea221734ac802595fcd141cb"
@@ -1173,7 +1146,7 @@ dependencies = [
  "http-body 1.0.0",
  "http-body-util",
  "hyper 1.2.0",
- "lambda_runtime 0.11.1",
+ "lambda_runtime",
  "mime",
  "percent-encoding 2.3.1",
  "pin-project-lite",
@@ -1182,32 +1155,6 @@ dependencies = [
  "serde_urlencoded",
  "tokio-stream",
  "url 2.5.0",
-]
-
-[[package]]
-name = "lambda_runtime"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc2904c10fbeaf07aa317fc96a0e28e89c80ed12f7949ed06afd7869b21fef32"
-dependencies = [
- "async-stream",
- "base64 0.21.7",
- "bytes",
- "futures",
- "http 1.1.0",
- "http-body 1.0.0",
- "http-body-util",
- "http-serde",
- "hyper 1.2.0",
- "hyper-util",
- "lambda_runtime_api_client 0.10.0",
- "serde",
- "serde_json",
- "serde_path_to_error",
- "tokio",
- "tokio-stream",
- "tower",
- "tracing",
 ]
 
 [[package]]
@@ -1226,7 +1173,7 @@ dependencies = [
  "http-serde",
  "hyper 1.2.0",
  "hyper-util",
- "lambda_runtime_api_client 0.11.0",
+ "lambda_runtime_api_client",
  "pin-project",
  "serde",
  "serde_json",
@@ -1236,27 +1183,6 @@ dependencies = [
  "tower",
  "tower-layer",
  "tracing",
-]
-
-[[package]]
-name = "lambda_runtime_api_client"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1364cd67281721d2a9a4444ba555cf4d74a195e647061fa4ccac46e6f5c3b0ae"
-dependencies = [
- "bytes",
- "futures-channel",
- "futures-util",
- "http 1.1.0",
- "http-body 1.0.0",
- "http-body-util",
- "hyper 1.2.0",
- "hyper-util",
- "tokio",
- "tower",
- "tower-service",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]
@@ -1472,7 +1398,7 @@ version = "1.0.0"
 dependencies = [
  "aws-config",
  "aws-sdk-dynamodb",
- "lambda_http 0.10.0",
+ "lambda_http",
  "serde_json",
  "shared",
  "tokio",
@@ -1505,7 +1431,7 @@ dependencies = [
 name = "put-by-id"
 version = "1.0.0"
 dependencies = [
- "lambda_http 0.10.0",
+ "lambda_http",
  "serde_json",
  "shared",
  "tokio",
