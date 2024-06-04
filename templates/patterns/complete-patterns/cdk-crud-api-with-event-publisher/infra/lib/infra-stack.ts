@@ -12,6 +12,7 @@ import { PostEndpoint } from "./constructs/post-endpoint";
 import { EventPublisherFunction } from "./constructs/event-publisher-function";
 import { Topic } from "aws-cdk-lib/aws-sns";
 import { StringParameter } from "aws-cdk-lib/aws-ssm";
+import { Alias } from "aws-cdk-lib/aws-kms";
 
 export class InfraStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -63,9 +64,15 @@ export class InfraStack extends cdk.Stack {
       apiResource: orderIdResource
     });
 
-    const orderCreatedTopic = new Topic(this, "OrderCreatedTopic");
-    const orderUpdatedTopic = new Topic(this, "OrderUpdatedTopic");
-    const orderDeletedTopic = new Topic(this, "OrderDeletedTopic");
+    const aws_sns_kms = Alias.fromAliasName(
+      this,
+      "aws-managed-sns-kms-key",
+      "alias/aws/sns",
+    );
+
+    const orderCreatedTopic = new Topic(this, "OrderCreatedTopic", { masterKey: aws_sns_kms });
+    const orderUpdatedTopic = new Topic(this, "OrderUpdatedTopic", { masterKey: aws_sns_kms });
+    const orderDeletedTopic = new Topic(this, "OrderDeletedTopic", { masterKey: aws_sns_kms });
 
     const eventPublisherFunction = new EventPublisherFunction(this, "EventPublisherFunction", {
       table: table,
