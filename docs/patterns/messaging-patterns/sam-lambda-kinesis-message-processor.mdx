@@ -5,9 +5,17 @@ description: Lambda function for processing messages from a Kinesis stream
 keywords: [rust,lambda,kinesis,messaging,streaming data]
 ---
 
+import ReactPlayer from 'react-player'
+
 With the explosion of data streaming, whether that be readings from IoT sensors or events in an event driven architectures, the amount of data moving around in your organisation is probably increasing. As this volume continues to grow, your ability to process records from the stream quickly and efficiently is going to have a direct impact on the cost and scalability of your system.
 
 Amazon Kinesis is a serverless streaming service provided by AWS. It allows producers to put messages onto the stream and services like AWS Lambda and Amazon Event Bridge Pipes can be added as consumers of records on the stream.
+
+## Video Walkthrough
+
+If video is more your thing, then check out this walkthrough on YouTube. Otherwise, keep reading for the written documentation.
+
+<ReactPlayer controls url='https://youtu.be/yd0iUPMG-DM' />
 
 ## How It Works
 
@@ -223,7 +231,16 @@ sam build
 sam deploy
 ```
 
-You can then invoke the function using the below CLI command, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step. The `sam logs` command will grab the latest logs.
+This pattern also ships with a small test utility that allows you to interact with Kinesis. Run the below commands to use the test utility, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step:
+
+```bash test-utility.sh
+cd test-utility
+cargo run -- <STREAM_ARN>
+```
+
+The test utility simulates a set of IoT devices sending temperature readings to Kinesis. It will send 10 records every 1 second. You can then use the `sam logs` command to retrieve the latest log messages.
+
+Alternatively, you can then invoke the function using the below CLI command, replacing the `<STREAM_ARN>` with the URL that was output as part of the `sam deploy` step. The `sam logs` command will grab the latest logs.
 
 ```bash test.sh
 aws kinesis put-record --data "eyJ0ZW1wZXJhdHVyZSI6IDg5LjksICJyZWFkaW5nVGltZXN0YW1wIjogODkyMzc0MiB9" --partition-key "sensor-1" --region eu-west-1 --profile dev --stream-arn <STREAM_ARN>

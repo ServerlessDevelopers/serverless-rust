@@ -5,6 +5,8 @@ description: Web Framework on Lambda
 keywords: [rust,lambda,api gateway, lambda web adapter]
 ---
 
+import ReactPlayer from 'react-player'
+
 Adopting the [single Lambda per verb](./cdk-cargo-lambda-lambda-per-verb-ddb.md) way of building serverless API's with Lambda can be a paradigm shift. If you're a developer familiar with starting up your API on localhost, testing and debugging locally before pushing out to production this shift can be a challenge.
 
 If this feels like you, then this article walks you through how you can use the [Lambda Web Adapter](https://github.com/awslabs/aws-lambda-web-adapter) alongside the Rocket web framework for Rust to deploy an entire web application to AWS Lambda.
@@ -12,6 +14,8 @@ If this feels like you, then this article walks you through how you can use the 
 Even though this article uses Rocket, this same process would apply for Actix, Axum or Leptos. Basically, as long as you're using a web framework that can startup on localhost then you're in the right place.
 
 ## Why Might You Want To Do This?
+
+<ReactPlayer controls url='https://youtu.be/DUhRpaux4eE' />
 
 This article isn't going to dive into the nuanced (and potentially controversial) topic of monolithic Lambda's vs having a separate Lambda function per HTTP endpoint and verb. What it will tell you, is why you might want to choose this approach:
 

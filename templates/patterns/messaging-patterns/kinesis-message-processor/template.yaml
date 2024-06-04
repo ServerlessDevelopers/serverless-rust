@@ -11,6 +11,8 @@ Resources:
     Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: kinesis-lambda
     Properties:
       FunctionName: serverless-rust-KinesisMessageProcessor
       CodeUri: .

@@ -1,5 +1,5 @@
 [workspace]
-members = [ "lambdas/new-message-processor", "lambdas/shared"]
+members = [ "lambdas/new-message-processor", "lambdas/shared", "test-utility"]
 resolver = "2"
 
 [workspace.package]
