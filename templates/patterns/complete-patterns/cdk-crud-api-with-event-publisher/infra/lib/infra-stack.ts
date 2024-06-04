@@ -81,6 +81,7 @@ export class InfraStack extends cdk.Stack {
       orderDeletedTopic
     });
 
+    // Store the Topic ARN's in SSM parameters to allow potential downstream subscribers to get the ARN's without introducing Stack dependencies.
     const orderCreatedTopicArnParameter = new StringParameter(this, "OrderCreatedTopicArn", {
       stringValue: orderCreatedTopic.topicArn,
       parameterName: "/order-api/order-created"

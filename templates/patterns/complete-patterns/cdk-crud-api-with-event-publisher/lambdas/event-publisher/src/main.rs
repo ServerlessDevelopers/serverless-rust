@@ -35,7 +35,7 @@ async fn function_handler(sns_client: &Client, event: LambdaEvent<Event>) -> Res
             continue;
         }
 
-        let evt_data = serde_json::to_string(&evt).unwrap();
+        let evt_data = serde_json::to_string(&evt)?;
 
         info!("{}", &evt_data);
 
