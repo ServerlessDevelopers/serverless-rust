@@ -9,7 +9,7 @@ edition = "2021"
 shared = { path = "../shared" }
 
 lambda_runtime = "0"
-aws_lambda_events = "0"
+aws_lambda_events = {version = "0", features = ["cloudwatch_events"]}
 serde = "1"
 anyhow = "1.0"
 serde_json = "1"

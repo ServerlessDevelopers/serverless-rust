@@ -12,7 +12,8 @@ async fn function_handler(event: LambdaEvent<SqsEvent>) -> Result<SqsBatchRespon
             continue;
         }
 
-        let new_message: Result<NewMessage, MessageParseError> = InternalSqsMessage::new(message.clone()).try_into();
+        let new_message: Result<NewMessage, MessageParseError> = InternalSqsMessage::new(message.clone())
+            .try_into();
 
         if new_message.is_err() {
             batch_item_failures.push(BatchItemFailure{
