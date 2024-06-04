@@ -26,11 +26,11 @@ async fn handler(command_handler: &DeleteOrderCommandHandler, event: Request) ->
     let order_id = event
         .path_parameters_ref()
         .and_then(|params| params.first("orderId"))
-        .unwrap();
+        .unwrap_or_else(|| "");
     let customer_id = event
         .path_parameters_ref()
         .and_then(|params| params.first("customerId"))
-        .unwrap();
+        .unwrap_or_else(|| "");
 
     let res = command_handler.handle(DeleteOrderCommand{
         order_id: order_id.to_string(),
