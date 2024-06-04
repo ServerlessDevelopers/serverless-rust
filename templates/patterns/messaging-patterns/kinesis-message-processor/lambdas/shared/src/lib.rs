@@ -23,8 +23,8 @@ impl InternalKinesisMessage{
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct NewSensorReading {
-    pub temperature: f64,
-    pub reading_timestamp: i64
+    pub temperature: f32,
+    pub reading_timestamp: f32
 }
 
 pub struct NewSensorReadingHandler {}
